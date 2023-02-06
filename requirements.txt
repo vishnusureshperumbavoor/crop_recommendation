@@ -1,4 +1,4 @@
 pandas
 streamlit
 joblib
-pickle
+pickle-mixin
