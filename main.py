@@ -4,8 +4,9 @@ from joblib import load
 import pickle
 
 def main():
-    dtc_model = load('crop_recommendation.json')
-    #dtc_model = pickle.load(open('crop_recommendation.json','rb'))
+    #dtc_model = load('crop_recommendation.json')
+    dtc_model = open("crop_recommendation.json","rb")
+    dtc_model = pickle.load(dtc_model)
     #dtc_model = open('crop_recommendation.json','r')
     html_temp="""
         <div style="background-color:lightblue;padding:16px">
@@ -42,7 +43,7 @@ def main():
             #st.balloons()
     except:
         st.warning("You can't cultivate crops in this land")
-        #st.warning(dtc_model)
+        st.warning(dtc_model)
 
 
     
