@@ -1,9 +1,12 @@
 import pandas as pd
 import streamlit as st
 from joblib import load
+import pickle
 
 def main():
     dtc_model = load('crop_recommendation.json')
+    #dtc_model = pickle.load(open('crop_recommendation.json','rb'))
+    #dtc_model = open('crop_recommendation.json','r')
     html_temp="""
         <div style="background-color:lightblue;padding:16px">
             <h2 style="color:black;text-align:center;">Crop Recommendation using Machine Learning</h2>
@@ -26,19 +29,20 @@ def main():
         'N':p1,
         'P':p2,
         'K':p3,
-        'temperature':p3,
-        'humidity':p4,
-        'ph':p5,
-        'rainfall':p6,
+        'temperature':p4,
+        'humidity':p5,
+        'ph':p6,
+        'rainfall':p7,
     },index=[0])
 
     try:
         if st.button('Predict'):
             pred = dtc_model.predict(data_new)
-            #st.balloons()
             st.success("You can cultivate {}".format(pred[0]))
+            #st.balloons()
     except:
         st.warning("You can't cultivate crops in this land")
+        #st.warning(dtc_model)
 
 
     
